@@ -506,7 +506,7 @@ https://templatemo.com/tm-516-known
                          </div>
                          <div>
                              <div class="form-group">
-                                     <form  method="post">
+                                     <form action="#footer" method="post">
                                          <label>Additional Comments:</label><br>
                                          <textarea cols="25" rows="3" name="test" id="test"></textarea><br>
                                          <input type="submit" class="form-control" id="form-submit" name="button" value="Submit"/>
