@@ -3,6 +3,13 @@
 include "config.php";
 $sql3 = "SELECT * FROM navstevnost stat ORDER BY stat.count DESC";
 $result3 = $conn->query($sql3);
+$txt="";
+
+
+while ($row3 = $result3->fetch_assoc())
+{
+    $txt= $txt." ".$row3["page"] . "=>" . $row3["count"];
+}
 
 
 use PHPMailer\PHPMailer\PHPMailer;
@@ -11,8 +18,8 @@ use PHPMailer\PHPMailer\PHPMailer;
 
         $email = $_POST['email'];
         $subject = "statistika modelov";
-        $body = 'while ($row3 = $result3->fetch_assoc())
-        {echo $row3["page"] . "=>" . $row3["count"];}' ;
+        //$body = $_POST['body'];
+        $body = $txt ;
 
         require_once "PHPMailer/PHPMailer.php";
         require_once "PHPMailer/SMTP.php";

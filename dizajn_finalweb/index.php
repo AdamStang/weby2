@@ -1,17 +1,3 @@
-<?php
-include "config.php";
-
-
-        if(!empty($_SERVER["HTTP_CLIENT_IP"])){
-            $ip_address = $_SERVER["HTTP_CLIENT_IP"];
-        }else if(!empty($_SERVER["HTTP_X_FORWARDED_FOR"])){
-            $ip_address = $_SERVER["HTTP_X_FORWARDED_FOR"];
-        }else{
-            $ip_address = $_SERVER["REMOTE_ADDR"];
-        }
-?>
-
-
 <!DOCTYPE html>
 <html lang="sk">
 <head>
@@ -148,7 +134,7 @@ https://templatemo.com/tm-516-known
                               <span>01</span>
                               <h3>Kyvadlo</h3>
                               <p></p>
-                              <a href="http://147.175.121.210:8166/Skuska/kyvadlo/index.php" class="btn btn-danger ml-auto mr-0 tm-btn-block">Details...</a>
+                              <a href="#" class="btn btn-danger ml-auto mr-0 tm-btn-block">Details...</a>
                          </div>
                     </article>
 
@@ -176,7 +162,7 @@ https://templatemo.com/tm-516-known
                               <span>04</span>
                               <h3>Klapka lietadla</h3>
                               <p></p>
-                              <a href="http://147.175.121.210:8166/Skuska/lietadlo/naklon.php" class="btn btn-danger ml-auto mr-0 tm-btn-block">Details...</a>
+                              <a href="#" class="btn btn-danger ml-auto mr-0 tm-btn-block">Details...</a>
                          </div>
                     </article>
                </section>
@@ -187,22 +173,16 @@ https://templatemo.com/tm-516-known
      <section id="statistics">
           <section id="header">
              <div class="container">
+
                  <!-- START TIMER -->
+                 <div id="timer" >
+                     <h2 >Štatistika návštevnosti jednotlivých modelov</h2>
+                     <div  class="timer_box"><h1>0</H1><p>Kyvadlo</p></div>
+                     <div  class="timer_box"><h1>0</H1><p>Gulicka</p></div>
+                     <div class="timer_box"><h1>0</H1><p>Tlmic</p></div>
+                     <div  class="timer_box"><h1>0</H1><p>Klapka</p></div>
+                 </div>
 
-                 <?php
-                 $sql3 = "SELECT * FROM navstevnost stat ORDER BY stat.count DESC";
-                 $result3 = $conn->query($sql3);
-
-                 if ($result3->num_rows > 0) {
-                     echo "<h2 >Štatistika návštevnosti jednotlivých modelov</h2>";
-                     echo "<div id=\"timer\">";
-                     while($row3 = $result3->fetch_assoc()) {
-                         echo "<div  class=\"timer_box\"><h1>".$row3["count"]."</H1><p>".$row3["page"]."</p></div>";
-                     }
-                     echo "</div>";
-                 }
-                 $conn->close();
-                 ?>
           <!-- STATISTICS on EMAIL -->
                   <div class="container">
                          <div class="col-md-4 col-sm-12">
@@ -214,8 +194,10 @@ https://templatemo.com/tm-516-known
 
                               <div class="footer-info newsletter-form">
                                    <div class="form-group">
+                                        <form action="#" method="get">
                                              <input type="email" class="form-control" placeholder="Vloz email" name="email" id="email" required="">
-                                             <input type="submit" class="form-control" onclick="sendEmail()" name="submit" id="form-submit" value="Odoslať">
+                                             <input type="submit" class="form-control" name="submit" id="form-submit" value="Odoslať">
+                                        </form>
                                    </div>
                               </div>
                          </div>
@@ -223,48 +205,6 @@ https://templatemo.com/tm-516-known
              </div>
           </section>
      </section>
-
-
-
-     <script src="http://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
-     <script type="text/javascript">
-         function sendEmail() {
-             console.log('sending...');
-
-             var email = $("#email");
-
-             if (isNotEmpty(email)  ) {
-                 $.ajax({
-                     url: 'sendEmail.php',
-                     method: 'POST',
-                     dataType: 'json',
-                     data: {
-                         email: email.val(),
-
-                     }, success: function (response) {
-                         if (response.status == "success")
-                             alert('Úspešne odoslané!');
-                         else {
-                             alert('Úspešne odoslané!');
-                             console.log(response);
-                         }
-                     }
-                 });
-             }
-
-             function isNotEmpty(caller) {
-                 if (caller.val() == "") {
-                     caller.css('border', '1px solid red');
-                     return false;
-                 } else
-                     caller.css('border', '');
-
-                 return true;
-             }
-         }
-
-
-     </script>
 
 
 
@@ -378,9 +318,9 @@ https://templatemo.com/tm-516-known
                                              <h4>ADAM</h4>
                                              <span></span>
                                         </div>
-                                        <p>1.animácia kyvadla</p>
-                                        <p>2.spojazdnenie octave</p>
-                                        <p>3.databáza pre api a prevod do pdf</p>
+                                        <p>1.animácia modelu 1</p>
+                                        <p>2.cde</p>
+                                        <p>3.fgh</p>
                                         <!-- RATING
                                         <div class="tst-rating">
                                               <i class="fa fa-star"></i>
@@ -397,9 +337,9 @@ https://templatemo.com/tm-516-known
                                               <h4>Peťo</h4>
                                               <span></span>
                                          </div>
-                                         <p>1.1.animácia Guľičky</p>
-                                         <p>2.spojazdnenie octave</p>
-                                         <p>3.vytvorenie api na výpočty</p>
+                                         <p>1.1.animácia modelu 2</p>
+                                         <p>2.cde</p>
+                                         <p>3.fgh</p>
 
                                     </div>
                                </div>
@@ -413,9 +353,9 @@ https://templatemo.com/tm-516-known
                                               <h4>Martin</h4>
                                               <span></span>
                                          </div>
-                                         <p>1.1.animácia tlmiča</p>
-                                         <p>2.popis api</p>
-                                         <p>3.štatistika návštevnosti</p>
+                                         <p>1.1.animácia modelu 3</p>
+                                         <p>2.cde</p>
+                                         <p>3.fgh</p>
 
                                      </div>
                                 </div>
@@ -429,9 +369,9 @@ https://templatemo.com/tm-516-known
                                                <h4>Miška</h4>
                                                <span></span>
                                           </div>
-                                          <p>1.1.animácia Klapky</p>
-                                          <p>2.dizajn</p>
-                                          <p>3.odosielanie mailu</p>
+                                          <p>1.1.animácia modelu 4</p>
+                                          <p>2.cde</p>
+                                          <p>3.fgh</p>
 
                                      </div>
                                 </div>
@@ -445,87 +385,64 @@ https://templatemo.com/tm-516-known
 
 
 
-     <!-- FOOTER -->
+       <!-- FOOTER -->
      <footer id="footer">
-         <div class="container">
-             <div class="row">
+          <div class="container">
+               <div class="row">
 
-                 <div class="col-md-4 col-sm-6">
-                     <div class="footer-info">
-                         <div class="section-title">
-                             <h2>FINÁLNE ZADANIE WEBTECH2</h2>
+                    <div class="col-md-4 col-sm-6">
+                         <div class="footer-info">
+                              <div class="section-title">
+                                   <h2>FINÁLNE ZADANIE WEBTECH2</h2>
+                              </div>
+                              <address>
+                                   <p>Slovenská technická univerzita, BA<br>
+                                        Fakulta elektrotechniky a informatiky<br>
+                                        Webové technológie 2
+                                   </p>
+                              </address>
+
+
+
+                              <div class="copyright-text"> 
+                                   <p>Copyright &copy; 2020 eMAMP</p>
+                                   
+                                   <p>Design: eMAMP</p>
+                              </div>
                          </div>
-                         <address>
-                             <p>Slovenská technická univerzita, BA<br>
-                                 Fakulta elektrotechniky a informatiky<br>
-                                 Webové technológie 2
-                             </p>
-                         </address>
+                    </div>
 
+                    <div class="col-md-4 col-sm-6">
+                         <div class="footer-info">
+                              <div class="section-title">
+                                   <h2>Contact Info</h2>
+                              </div>
+                              <address>
 
+                              </address>
 
-                         <div class="copyright-text">
-                             <p>Copyright &copy; 2020 eMAMP</p>
+                              <div class="footer_menu">
+                                   <h2>Quick Links</h2>
+                                   <ul>
 
-                             <p>Design: eMAMP</p>
+                                   </ul>
+                              </div>
                          </div>
-                     </div>
-                 </div>
+                    </div>
 
-                 <div class="col-md-4 col-sm-12">
-                     <div class="footer-info newsletter-form">
-                         <div class="section-title">
-                             <h2>Popis API</h2>
+                    <div class="col-md-4 col-sm-12">
+                         <div class="footer-info newsletter-form">
+                              <div class="section-title">
+                                   <h2>Newsletter Signup</h2>
+                              </div>
+
                          </div>
-                         <div>
-
-                             <p>V našej API máme využitú službu na vyhodnocovanie rôznych matematických úkonov.
-                                 Túto funkcionalitu využívame prostredníctvom softvéru Octave, ktorý máme nainštalovaný na našom serveri.</p>
-                             <p>Samotné príkazy sa zadávajú do textového poľa. API dokáže vyhodnotiť aj viacero príkazov súčasne.
-                                 Keďže si API nepamätá predošlé premenné, je potrebné všetky príkazy zadať spolu do jedného textového poľa.
-                                 Príkazy, ktoré nie su ukončené bodkočiarkou sa po odoslaní ihneď vyhodnotia a vypíšu na obrazovku.</p>
-                             <p> Vyhodnocované príkazy sa po odoslaní automaticky posielajú do databázy, kde sú uložené na spracovanie.
-                                 Posielanie údajov prebieha cez HTTP protokol. Využívajú sa metódy ako GET a POST, ktoré sú súčsasťou HTTP modelu.
-                                 Odoslané informácie, ktoré sú uložené v databáze sa dajú exportovať do PDF.</p>
-
-                             <div class="form-group">
-                                 <form action="export.php" method="post" target="_blank">
-
-                                     <input type="submit" class="form-control" name="submit" id="form-submit" value="Export do PDF">
-                                 </form>
-
-                             </div>
-                         </div>
-                     </div>
-                 </div>
-
-                 <div class="col-md-4 col-sm-12">
-                     <div class="footer-info newsletter-form">
-                         <div class="section-title">
-                             <h2>Vykonavanie prikazov</h2>
-                         </div>
-                         <div>
-                             <div class="form-group">
-                                     <form  method="post">
-                                         <label>Additional Comments:</label><br>
-                                         <textarea cols="25" rows="3" name="test" id="test"></textarea><br>
-                                         <input type="submit" class="form-control" id="form-submit" name="button" value="Submit"/>
-                                         <?php include "test2.php" ?>
-                                     </form>
-                                 <form action="exportApi.php" method="post" target="_blank">
-
-                                     <input type="submit" class="form-control" name="submit" id="form-submit" value="Export do PDF">
-                                 </form>
-
-
-                             </div>
-                         </div>
-                     </div>
-                 </div>
-
-             </div>
-         </div>
+                    </div>
+                    
+               </div>
+          </div>
      </footer>
+
 
      <!-- SCRIPTS -->
      <script src="js/jquery.js"></script>
@@ -533,7 +450,7 @@ https://templatemo.com/tm-516-known
      <script src="js/owl.carousel.min.js"></script>
      <script src="js/smoothscroll.js"></script>
      <script src="js/custom.js"></script>
-     <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+
 
 </body>
 </html>
